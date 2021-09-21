@@ -5,8 +5,9 @@ const mongoose = require('mongoose');
 //const { generateFakeData } = require("../faker2")
 
 
-const { MONGO_URI } = process.env;
+const { MONGO_URI, PORT } = process.env;
 if( !MONGO_URI ) throw new ("MONGO_URI is required!!!");
+if( !PORT ) throw new ("PORT is required!!!");
 
 
 const server = async() => {
@@ -20,8 +21,8 @@ const server = async() => {
         app.use('/blog', blogRouter);
         //app.use('/blog/:blogId/comment', commentRouter);
         
-        app.listen(3000, async() => {
-            console.log('server listening on port 3000');
+        app.listen(PORT, async() => {
+            console.log(`server listening on port ${PORT}`);
             //await generateFakeData(3, 5, 20);
         });
     }catch(err){
